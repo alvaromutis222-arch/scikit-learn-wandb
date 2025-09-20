@@ -1,4 +1,4 @@
-name: Train scikit-learn model
+name: Entrenar modelo experiencias (scikit-learn)
 
 on:
   push:
@@ -11,9 +11,12 @@ on:
 jobs:
   train:
     runs-on: ubuntu-latest
+
     env:
+      # 👇 Configura estos en Settings → Secrets and variables → Actions
       WANDB_API_KEY: ${{ secrets.WANDB_API_KEY }}
       WANDB_PROJECT: mlops-pycon-2023
+      WANDB_ENTITY: ${{ vars.WANDB_ENTITY }}  # o usa secrets.WANDB_ENTITY si prefieres
 
     steps:
       - name: Checkout
@@ -29,12 +32,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run training
+      - name: Run training (experiencias)
         run: |
-          python src/models/train_sklearn.py --n_estimators 300 --test_size 0.2
+          python src/models/train_sklearn.py \
+            --n_estimators 300 \
+            --test_size 0.2 \
+            --log_steps 50 100 200 300
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: model-artifacts
+          name: experiencias-model-artifacts
           path: artifacts/
