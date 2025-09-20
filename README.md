@@ -1,7 +1,11 @@
 # MLOps scikit-learn baseline
 
 Este repo entrena un modelo de scikit-learn (RandomForest) y reporta métricas a Weights & Biases (wandb) usando GitHub Actions.
+## INTEGRANTES:
 
+- Jose Luis Bedoya Martinez
+- Alvaro Javier Mutis Guerrero
+  
 ## Requisitos
 - Python 3.11
 - Secret `WANDB_API_KEY` configurado en GitHub (Settings → Secrets and variables → Actions).
